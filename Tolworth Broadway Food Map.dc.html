@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #000; font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #fff; }
+  ::selection { background: #8052ff; color: #fff; }
+  input::placeholder, textarea::placeholder { color: #6a6a6a; }
+  select option { background: #0a0a0a; color: #fff; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 8px; }
+  @keyframes tbfade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</helmet>
+
+<div style="background:#000;min-height:100vh;">
+
+  <!-- ===================== NAV ===================== -->
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(0,0,0,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:30px;height:30px;border:1.5px solid #8052ff;border-radius:8px;display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);font-weight:700;font-size:11px;color:#fff;letter-spacing:0.02em;">TB</span></div>
+      <span style="font-weight:600;font-size:15px;letter-spacing:0.01em;color:#fff;">Tolworth Broadway</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:30px;">
+      <a href="#map" style="font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;text-decoration:none;" style-hover="color:#fff;">Local map</a>
+      <a href="#world" style="font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;text-decoration:none;" style-hover="color:#fff;">World map</a>
+      <a href="#reviews" style="font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;text-decoration:none;" style-hover="color:#fff;">Reviews</a>
+      <button onClick="{{ onAddReview }}" style="font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:11px 18px;border-radius:24px;border:none;cursor:pointer;white-space:nowrap;" style-hover="background:#9168ff;">Add a review</button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO (Option C) ===================== -->
+  <section id="top" style="position:relative;background:#000;overflow:hidden;">
+    <canvas id="hero-field" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+    <div style="position:relative;z-index:5;max-width:1200px;margin:0 auto;padding:0 40px;height:82vh;min-height:600px;">
+      <!-- stats column top-right -->
+      <div style="position:absolute;top:60px;right:40px;text-align:right;">
+        <div style="padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.12);"><div style="font-weight:200;font-size:46px;letter-spacing:-0.03em;color:#fff;line-height:1;">19</div><div style="font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Food outlets</div></div>
+        <div style="padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.12);"><div style="font-weight:200;font-size:46px;letter-spacing:-0.03em;color:#fff;line-height:1;">{{ countries }}</div><div style="font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Origin countries</div></div>
+        <div style="padding:16px 0;"><div style="font-weight:200;font-size:46px;letter-spacing:-0.03em;color:#8052ff;line-height:1;">{{ savedReviews }}</div><div style="font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Saved reviews</div></div>
+      </div>
+      <!-- headline bottom-left -->
+      <div style="position:absolute;left:40px;bottom:52px;max-width:780px;">
+        <div style="font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;margin-bottom:20px;">19 outlets · one stretch · KT6</div>
+        <h1 style="margin:0;font-weight:200;font-size:clamp(48px,8vw,94px);line-height:0.86;letter-spacing:-0.045em;color:#fff;">Eat your way<br>down the Broadway.</h1>
+        <p style="font-weight:400;font-size:16px;line-height:1.55;letter-spacing:0.02em;color:#bdbdbd;margin:26px 0 0;max-width:440px;">Restaurants, origins, reviews and photos from one stretch of Tolworth — mapped marker by marker into a living local food guide.</p>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:30px;">
+          <a href="#map" style="font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:14px 22px;border-radius:24px;text-decoration:none;white-space:nowrap;" style-hover="background:#9168ff;">Explore the map</a>
+          <a href="#reviews" style="font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.25);padding:13px 22px;border-radius:24px;text-decoration:none;white-space:nowrap;" style-hover="border-color:#fff;">Read reviews</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPLORE: MAP + DIRECTORY ===================== -->
+  <section id="map" style="scroll-margin-top:84px;max-width:1200px;margin:0 auto;padding:90px 40px 0;">
+    <div style="font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;margin-bottom:18px;">Local guide</div>
+    <h2 style="margin:0;font-weight:200;font-size:clamp(34px,5vw,58px);line-height:1.0;letter-spacing:-0.035em;color:#fff;max-width:760px;">Explore every restaurant on Tolworth Broadway.</h2>
+    <p style="font-weight:400;font-size:16px;line-height:1.55;letter-spacing:0.02em;color:#9a9a9a;margin:22px 0 0;max-width:560px;">Pick a marker, filter the list, add a review. Markers glow brighter the higher they rate — dim ones fall outside your current filter.</p>
+
+    <!-- controls -->
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:38px;">
+      <div style="position:relative;flex:1;min-width:240px;">
+        <span style="position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#6a6a6a;font-size:15px;">⌕</span>
+        <input type="text" value="{{ q }}" onInput="{{ onSearch }}" placeholder="Search restaurants, cuisines, origins…" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:14px 18px 14px 40px;color:#fff;font-family:'Sora';font-size:14px;letter-spacing:0.02em;outline:none;" style-focus="border-color:#8052ff;">
+      </div>
+      <select value="{{ cuisine }}" onChange="{{ onCuisine }}" style="background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:14px 18px;color:#fff;font-family:'Sora';font-size:14px;letter-spacing:0.02em;outline:none;cursor:pointer;min-width:190px;" style-focus="border-color:#8052ff;">
+        <option value="all">All cuisines</option>
+        <sc-for list="{{ cuisines }}" as="c" hint-placeholder-count="6"><option value="{{ c }}">{{ c }}</option></sc-for>
+      </select>
+      <button onClick="{{ onReset }}" title="Reset filters" style="background:transparent;border:1px solid rgba(255,255,255,0.14);border-radius:24px;width:48px;height:48px;color:#9a9a9a;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="border-color:#fff;color:#fff;">↺</button>
+    </div>
+    <div style="font-weight:400;font-size:13px;letter-spacing:0.04em;color:#6a6a6a;margin-top:16px;">Showing <span style="color:#fff;">{{ resultCount }}</span> of 19 outlets</div>
+
+    <!-- map panel -->
+    <div style="position:relative;width:100%;height:440px;background:radial-gradient(ellipse 70% 90% at 50% 50%, #0a0a14 0%, #000 70%);border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;margin-top:24px;">
+      <!-- compass + labels -->
+      <div style="position:absolute;left:24px;top:20px;font-weight:600;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9a9a9a;z-index:4;">Tolworth Broadway · A240</div>
+      <div style="position:absolute;left:24px;bottom:18px;font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#5a5a5a;z-index:4;">← KT6 7DQ</div>
+      <div style="position:absolute;right:24px;bottom:18px;font-weight:400;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#5a5a5a;z-index:4;">KT6 7HT →</div>
+      <!-- street spine -->
+      <svg viewBox="0 0 1000 440" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 7px rgba(128,82,255,0.45));z-index:1;">
+        <polyline points="{{ streetPoints }}" fill="none" stroke="#8052ff" stroke-width="1.5" stroke-opacity="0.55" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round"></polyline>
+      </svg>
+      <!-- markers -->
+      <div style="position:absolute;inset:0;z-index:3;">
+        <sc-for list="{{ mapView }}" as="n" hint-placeholder-count="19">
+          <button onClick="{{ n.onClick }}" onMouseEnter="{{ n.onEnter }}" onMouseLeave="{{ n.onLeave }}" style="position:absolute;left:{{ n.left }}%;top:{{ n.topPx }}px;width:{{ n.sizePx }}px;height:{{ n.sizePx }}px;transform:{{ n.transform }};border-radius:50%;border:{{ n.border }};background:{{ n.bg }};box-shadow:{{ n.glow }};opacity:{{ n.op }};z-index:{{ n.z }};padding:0;cursor:pointer;transition:transform .2s,box-shadow .2s;">
+            <span style="position:absolute;left:50%;bottom:calc(100% + 9px);transform:translateX(-50%);white-space:nowrap;font-family:'Sora';font-weight:500;font-size:12px;letter-spacing:0.02em;color:#fff;background:#000;padding:4px 10px;border:1px solid rgba(255,255,255,0.16);border-radius:14px;opacity:{{ n.labelOpacity }};pointer-events:none;transition:opacity .15s;">{{ n.name }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- directory grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;margin-top:24px;">
+      <sc-for list="{{ filtered }}" as="f" hint-placeholder-count="6">
+        <div onClick="{{ f.onClick }}" style="background:#0a0a0a;border:1px solid rgba(255,255,255,0.10);border-radius:24px;padding:24px;cursor:pointer;transition:border-color .2s,background .2s;display:flex;flex-direction:column;gap:14px;" style-hover="border-color:rgba(128,82,255,0.6);background:#0c0a14;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            <span style="font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8052ff;border:1px solid rgba(128,82,255,0.45);border-radius:24px;padding:5px 11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;">{{ f.cuisine }}</span>
+            <span style="font-weight:500;font-size:13px;letter-spacing:0.02em;color:#ffb829;white-space:nowrap;">{{ f.ratingStr }}</span>
+          </div>
+          <div>
+            <div style="font-weight:200;font-size:27px;line-height:1.05;letter-spacing:-0.02em;color:#fff;">{{ f.name }}</div>
+            <div style="font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;margin-top:7px;">{{ f.origin }}</div>
+          </div>
+          <p style="margin:0;font-weight:400;font-size:14px;line-height:1.5;letter-spacing:0.01em;color:#bdbdbd;">{{ f.summary }}</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:6px;">
+            <span style="font-weight:400;font-size:12px;letter-spacing:0.03em;color:#6a6a6a;">{{ f.priceAddr }}</span>
+            <span style="font-weight:500;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:{{ f.reviewColor }};">{{ f.reviewLabel }} →</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:50px 0;color:#6a6a6a;font-size:15px;letter-spacing:0.02em;">No outlets match that filter. <span onClick="{{ onReset }}" style="color:#8052ff;cursor:pointer;text-decoration:underline;">Reset</span></div>
+    </sc-if>
+  </section>
+
+  <!-- ===================== WORLD ORIGIN MAP ===================== -->
+  <section id="world" style="scroll-margin-top:84px;max-width:1200px;margin:0 auto;padding:110px 40px 0;">
+    <div style="font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;margin-bottom:18px;">World map</div>
+    <h2 style="margin:0;font-weight:200;font-size:clamp(34px,5vw,58px);line-height:1.0;letter-spacing:-0.035em;color:#fff;max-width:760px;">See where the food comes from.</h2>
+    <p style="font-weight:400;font-size:16px;line-height:1.55;letter-spacing:0.02em;color:#9a9a9a;margin:22px 0 0;max-width:600px;">Each origin node is scaled by how many Tolworth restaurants connect to that country. Lines radiate from the Broadway. Fusion kitchens connect to more than one place. Tap a node to filter the directory.</p>
+
+    <div style="position:relative;width:100%;height:540px;background:radial-gradient(ellipse 80% 80% at 50% 45%, #0a0a14 0%, #000 72%);border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;margin-top:38px;">
+      <!-- graticule + connection lines -->
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;">
+        <line x1="0" y1="25" x2="100" y2="25" stroke="#ffffff" stroke-opacity="0.04" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <line x1="0" y1="50" x2="100" y2="50" stroke="#ffffff" stroke-opacity="0.05" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <line x1="0" y1="75" x2="100" y2="75" stroke="#ffffff" stroke-opacity="0.04" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <line x1="25" y1="0" x2="25" y2="100" stroke="#ffffff" stroke-opacity="0.04" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="#ffffff" stroke-opacity="0.05" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <line x1="75" y1="0" x2="75" y2="100" stroke="#ffffff" stroke-opacity="0.04" stroke-width="0.5" vector-effect="non-scaling-stroke"></line>
+        <g style="filter:drop-shadow(0 0 5px rgba(128,82,255,0.4));">
+          <sc-for list="{{ worldLines }}" as="ln" hint-placeholder-count="10">
+            <line x1="{{ ln.x1 }}" y1="{{ ln.y1 }}" x2="{{ ln.x2 }}" y2="{{ ln.y2 }}" stroke="#8052ff" stroke-opacity="0.4" stroke-width="1" vector-effect="non-scaling-stroke"></line>
+          </sc-for>
+        </g>
+      </svg>
+      <!-- nodes -->
+      <div style="position:absolute;inset:0;z-index:3;">
+        <sc-for list="{{ worldNodes }}" as="w" hint-placeholder-count="11">
+          <a href="#map" onClick="{{ w.onClick }}" style="position:absolute;left:{{ w.left }}%;top:{{ w.top }}%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;cursor:pointer;">
+            <div style="width:{{ w.sizePx }}px;height:{{ w.sizePx }}px;border-radius:50%;background:{{ w.bg }};box-shadow:{{ w.glow }};border:{{ w.border }};transition:transform .2s;" style-hover="transform:scale(1.18);"></div>
+            <div style="white-space:nowrap;text-align:center;"><span style="font-weight:500;font-size:12px;letter-spacing:0.02em;color:#fff;">{{ w.name }}</span> <span style="font-weight:600;font-size:11px;color:#8052ff;">×{{ w.count }}</span></div>
+          </a>
+        </sc-for>
+        <!-- hub label -->
+        <div style="position:absolute;left:{{ hubLeft }}%;top:{{ hubTop }}%;transform:translate(-50%,calc(-50% - 30px));font-weight:600;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#ffb829;white-space:nowrap;pointer-events:none;">◆ Tolworth</div>
+      </div>
+    </div>
+    <!-- legend -->
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;">
+      <sc-for list="{{ worldLegend }}" as="l" hint-placeholder-count="11">
+        <div style="display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:8px 14px;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#8052ff;display:inline-block;"></span>
+          <span style="font-weight:400;font-size:13px;letter-spacing:0.02em;color:#bdbdbd;">{{ l.name }}</span>
+          <span style="font-weight:600;font-size:13px;color:#fff;">{{ l.count }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===================== REVIEW BLOG ===================== -->
+  <section id="reviews" style="scroll-margin-top:84px;max-width:1200px;margin:0 auto;padding:110px 40px 0;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div>
+        <div style="font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;margin-bottom:18px;">Review blog</div>
+        <h2 style="margin:0;font-weight:200;font-size:clamp(34px,5vw,58px);line-height:1.0;letter-spacing:-0.035em;color:#fff;max-width:680px;">Latest notes and write-ups.</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <select value="{{ blogSort }}" onChange="{{ onBlogSort }}" style="background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:12px 16px;color:#fff;font-family:'Sora';font-size:13px;letter-spacing:0.02em;outline:none;cursor:pointer;" style-focus="border-color:#8052ff;">
+          <option value="newest">Sort · Newest review</option>
+          <option value="rating">Sort · Rating</option>
+          <option value="name">Sort · Name</option>
+        </select>
+        <button onClick="{{ onAddReview }}" style="font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:12px 18px;border-radius:24px;border:none;cursor:pointer;white-space:nowrap;" style-hover="background:#9168ff;">Add a review</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px;margin-top:42px;">
+      <sc-for list="{{ blog }}" as="b" hint-placeholder-count="6">
+        <div onClick="{{ b.onClick }}" style="background:#0a0a0a;border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;cursor:pointer;transition:border-color .2s;display:flex;flex-direction:column;" style-hover="border-color:rgba(128,82,255,0.6);">
+          {{ b.photoEl }}
+          <div style="padding:22px;display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <span style="font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8052ff;">{{ b.cuisine }}</span>
+              <span style="font-weight:500;font-size:13px;color:#ffb829;white-space:nowrap;">{{ b.ratingStr }}</span>
+            </div>
+            <div style="font-weight:200;font-size:24px;line-height:1.05;letter-spacing:-0.02em;color:#fff;">{{ b.name }}</div>
+            <p style="margin:0;font-weight:400;font-size:14px;line-height:1.55;letter-spacing:0.01em;color:#bdbdbd;">{{ b.text }}</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);">
+              <span style="font-weight:500;font-size:12px;letter-spacing:0.03em;color:{{ b.authorColor }};">{{ b.byline }}</span>
+              <span style="font-weight:400;font-size:12px;letter-spacing:0.03em;color:#6a6a6a;">{{ b.meta }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="max-width:1200px;margin:110px auto 0;padding:48px 40px 60px;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+        <div style="width:26px;height:26px;border:1.5px solid #8052ff;border-radius:7px;display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);font-weight:700;font-size:10px;color:#fff;">TB</span></div>
+        <span style="font-weight:600;font-size:14px;color:#fff;">Tolworth Broadway Food Map</span>
+      </div>
+      <p style="margin:0;font-weight:400;font-size:13px;line-height:1.6;letter-spacing:0.02em;color:#6a6a6a;max-width:420px;">Built from <span style="color:#9a9a9a;font-family:ui-monospace,monospace;font-size:12px;">Tolworth_Broadway_Food_Outlets.xlsx</span>. Review submissions are saved in this browser.</p>
+    </div>
+    <div style="font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#5a5a5a;">Tolworth · KT6</div>
+  </footer>
+
+  <!-- ===================== DETAIL MODAL ===================== -->
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ onCloseModal }}" style="position:fixed;inset:0;z-index:80;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:60px 20px;overflow:auto;">
+      <div onClick="{{ stop }}" style="width:100%;max-width:620px;background:#070707;border:1px solid rgba(255,255,255,0.14);border-radius:24px;overflow:hidden;animation:tbfade .25s ease;">
+        <!-- placeholder hero -->
+        <div style="position:relative;height:180px;background:repeating-linear-gradient(135deg,#0d0d0d 0,#0d0d0d 11px,#101010 11px,#101010 22px);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:ui-monospace,monospace;font-size:12px;letter-spacing:0.08em;color:#4a4a4a;">[ storefront photo — {{ dR.name }} ]</span>
+          <button onClick="{{ onCloseModal }}" style="position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.18);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="border-color:#fff;">×</button>
+        </div>
+        <div style="padding:28px 30px 30px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <span style="font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#8052ff;border:1px solid rgba(128,82,255,0.45);border-radius:24px;padding:5px 12px;">{{ dR.cuisine }}</span>
+            <span style="font-weight:500;font-size:15px;color:#ffb829;">{{ dR.ratingStr }}</span>
+          </div>
+          <h3 style="margin:18px 0 0;font-weight:200;font-size:42px;line-height:0.95;letter-spacing:-0.03em;color:#fff;">{{ dR.name }}</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;">
+            <div><div style="font-weight:400;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6a6a6a;">Origin</div><div style="font-weight:400;font-size:14px;color:#bdbdbd;margin-top:3px;">{{ dR.origin }}</div></div>
+            <div><div style="font-weight:400;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6a6a6a;">Address</div><div style="font-weight:400;font-size:14px;color:#bdbdbd;margin-top:3px;">{{ dR.addr }}</div></div>
+            <div><div style="font-weight:400;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6a6a6a;">Price</div><div style="font-weight:400;font-size:14px;color:#bdbdbd;margin-top:3px;">{{ dR.price }}</div></div>
+          </div>
+          <p style="font-weight:400;font-size:15px;line-height:1.6;letter-spacing:0.02em;color:#e6e6e6;margin:22px 0 0;">{{ dR.summary }}</p>
+          <div style="margin-top:14px;font-weight:400;font-size:13px;letter-spacing:0.02em;color:#9a9a9a;">Recommended · <span style="color:#fff;">{{ dR.dish }}</span></div>
+
+          <div style="margin-top:26px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-weight:600;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#fff;">Reviews</div>
+            <button onClick="{{ onWriteReview }}" style="font-weight:600;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:9px 15px;border-radius:24px;border:none;cursor:pointer;" style-hover="background:#9168ff;">Write a review</button>
+          </div>
+          <sc-if value="{{ dHasReviews }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
+              <sc-for list="{{ dReviews }}" as="rv" hint-placeholder-count="2">
+                <div style="border:1px solid rgba(255,255,255,0.10);border-radius:18px;padding:16px;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                    <span style="font-weight:500;font-size:13px;color:#fff;">{{ rv.name }}</span>
+                    <span style="font-weight:500;font-size:13px;color:#ffb829;">{{ rv.ratingStr }}</span>
+                  </div>
+                  {{ rv.photoEl }}
+                  <p style="margin:10px 0 0;font-weight:400;font-size:14px;line-height:1.55;color:#cfcfcf;">{{ rv.text }}</p>
+                  <div style="margin-top:10px;font-weight:400;font-size:12px;color:#6a6a6a;">{{ rv.meta }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ dNoReviews }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:16px;border:1px dashed rgba(255,255,255,0.14);border-radius:18px;padding:18px;">
+              <div style="font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6a6a6a;margin-bottom:8px;">Starter note</div>
+              <p style="margin:0;font-weight:400;font-size:14px;line-height:1.55;color:#bdbdbd;">{{ dR.starter }}</p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===================== REVIEW FORM MODAL ===================== -->
+  <sc-if value="{{ isForm }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ onCloseModal }}" style="position:fixed;inset:0;z-index:90;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:50px 20px;overflow:auto;">
+      <div onClick="{{ stop }}" style="width:100%;max-width:520px;background:#070707;border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:30px;animation:tbfade .25s ease;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px;">
+          <div style="font-weight:200;font-size:30px;letter-spacing:-0.02em;color:#fff;">Add a review</div>
+          <button onClick="{{ onCloseModal }}" style="width:34px;height:34px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,0.18);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="border-color:#fff;">×</button>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <sc-if value="{{ showSelect }}" hint-placeholder-val="{{ true }}">
+            <label style="display:block;">
+              <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Restaurant</span>
+              <select value="{{ form.restaurantId }}" onChange="{{ onSelectRestaurant }}" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:13px 14px;color:#fff;font-family:'Sora';font-size:14px;outline:none;cursor:pointer;" style-focus="border-color:#8052ff;">
+                <option value="">Choose a restaurant…</option>
+                <sc-for list="{{ formOptions }}" as="o" hint-placeholder-count="6"><option value="{{ o.id }}">{{ o.name }}</option></sc-for>
+              </select>
+            </label>
+          </sc-if>
+          <sc-if value="{{ fixedRestaurant }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#0c0a14;border:1px solid rgba(128,82,255,0.4);border-radius:14px;padding:13px 16px;font-weight:500;font-size:14px;color:#fff;">{{ formRestaurantName }}</div>
+          </sc-if>
+
+          <div style="display:flex;gap:12px;">
+            <label style="flex:1;">
+              <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Your name</span>
+              <input type="text" value="{{ form.name }}" onInput="{{ onName }}" placeholder="Local guide" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:13px 14px;color:#fff;font-family:'Sora';font-size:14px;outline:none;" style-focus="border-color:#8052ff;">
+            </label>
+            <label style="flex:1;">
+              <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Visit date</span>
+              <input type="date" value="{{ form.date }}" onInput="{{ onDate }}" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:13px 14px;color:#fff;font-family:'Sora';font-size:14px;outline:none;color-scheme:dark;" style-focus="border-color:#8052ff;">
+            </label>
+          </div>
+
+          <div>
+            <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Rating · {{ form.rating }}.0</span>
+            <div style="display:flex;gap:8px;">
+              <sc-for list="{{ starStates }}" as="s" hint-placeholder-count="5">
+                <button onClick="{{ s.onClick }}" style="background:transparent;border:none;cursor:pointer;font-size:30px;line-height:1;color:{{ s.color }};padding:0;transition:transform .12s;" style-hover="transform:scale(1.15);">★</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <label style="display:block;">
+            <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Recommended dish</span>
+            <input type="text" value="{{ form.dish }}" onInput="{{ onDish }}" placeholder="What should people order?" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:13px 14px;color:#fff;font-family:'Sora';font-size:14px;outline:none;" style-focus="border-color:#8052ff;">
+          </label>
+
+          <label style="display:block;">
+            <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Review</span>
+            <textarea value="{{ form.text }}" onInput="{{ onText }}" placeholder="What was it like? Value, service, the signature order…" rows="4" style="width:100%;background:#0b0b0b;border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:13px 14px;color:#fff;font-family:'Sora';font-size:14px;line-height:1.5;outline:none;resize:vertical;" style-focus="border-color:#8052ff;"></textarea>
+          </label>
+
+          <div>
+            <span style="display:block;font-weight:500;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#9a9a9a;margin-bottom:8px;">Photo</span>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <label style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.16);border-radius:14px;padding:11px 16px;cursor:pointer;color:#bdbdbd;font-size:13px;letter-spacing:0.02em;" style-hover="border-color:#fff;color:#fff;">
+                <span>＋ Upload photo</span>
+                <input type="file" accept="image/*" onChange="{{ onPhoto }}" style="display:none;">
+              </label>
+              {{ formPhotoEl }}
+            </div>
+          </div>
+
+          <button onClick="{{ onSubmit }}" style="margin-top:8px;font-weight:600;font-size:13px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:16px;border-radius:24px;border:none;cursor:pointer;width:100%;" style-hover="background:#9168ff;">Save review</button>
+          <div style="text-align:center;font-weight:400;font-size:12px;color:#6a6a6a;letter-spacing:0.02em;">Saved in this browser only.</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===================== TOAST ===================== -->
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:120;background:#8052ff;color:#fff;font-weight:500;font-size:13px;letter-spacing:0.03em;padding:14px 24px;border-radius:24px;animation:tbfade .25s ease;">{{ toast }}</div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  CC = {
+    IN:{name:'India',lat:20.5937,lng:78.9629},
+    TR:{name:'Turkey',lat:38.9637,lng:35.2433},
+    GB:{name:'United Kingdom',lat:55.3781,lng:-3.436},
+    US:{name:'United States',lat:37.0902,lng:-95.7129},
+    MX:{name:'Mexico',lat:23.6345,lng:-102.5528},
+    IR:{name:'Iran',lat:32.4279,lng:53.688},
+    PT:{name:'Portugal',lat:39.3999,lng:-8.2245},
+    ZA:{name:'South Africa',lat:-30.5595,lng:22.9375},
+    IT:{name:'Italy',lat:41.8719,lng:12.5674},
+    AL:{name:'Albania',lat:41.1533,lng:20.1683},
+    GR:{name:'Greece',lat:39.0742,lng:21.8243},
+  };
+
+  DATA = [
+    {id:'vasantha-vilas',name:'Vasantha Vilas',addr:'7 Tolworth Broadway, KT6 7DQ',cuisine:'South Indian Vegetarian',origin:'India (Tamil Nadu)',codes:['IN'],lat:51.3821704,lng:-0.2845943,rating:4.6,price:'££',dish:'Dosa and chutney',summary:'Crisp dosas, comforting curries, and vegetarian plates that make Tolworth feel a little closer to Chennai.',starter:'On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.'},
+    {id:'kebab-express-tolworth',name:'Kebab Express, Tolworth',addr:'5 Tolworth Broadway, KT6 7DQ',cuisine:'Kebab / Fast Food',origin:'Turkey',codes:['TR'],lat:51.3822155,lng:-0.2846573,rating:4.3,price:'££',dish:'Kebab wrap',summary:'A fast, late-friendly stop built around grilled meats, warm bread, sauces, and quick takeaway energy.',starter:'A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.'},
+    {id:'superfish',name:'Superfish',addr:'25 Tolworth Broadway, KT6 7DJ',cuisine:'Fish & Chips',origin:'United Kingdom',codes:['GB'],lat:51.3817645,lng:-0.284027,rating:3.7,price:'££',dish:'Fish and chips',summary:'Classic British comfort food with a simple promise: hot chips, crisp batter, and no unnecessary theatre.',starter:'Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.'},
+    {id:'chicken-land',name:'Chicken Land',addr:'19 Tolworth Broadway, KT6 7DJ',cuisine:'Fried Chicken',origin:'United States',codes:['US'],lat:51.3818998,lng:-0.2842161,rating:4.0,price:'££',dish:'Fried chicken',summary:'A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.',starter:'Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.'},
+    {id:'taqueria-la-salsa',name:'Taqueria la salsa',addr:'41B Tolworth Broadway, KT6 7DJ',cuisine:'Tacos',origin:'Mexico',codes:['MX'],lat:51.3814037,lng:-0.2835227,rating:4.1,price:'£',dish:'Tacos and salsa',summary:'Bright, casual Mexican flavours with salsa, spice, and a street-food feel on the Broadway.',starter:'On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.'},
+    {id:'rose-restaurant',name:'Rose Restaurant',addr:'41 Tolworth Broadway, KT6 7DJ',cuisine:'Persian',origin:'Iran',codes:['IR'],lat:51.3814037,lng:-0.2835227,rating:4.4,price:'£',dish:'Persian grill',summary:'Fragrant rice, grilled meats, herbs, and generous plates from the Persian kitchen.',starter:'A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.'},
+    {id:'pepe-s',name:"Pepe's",addr:'46 Tolworth Broadway, KT6 7HR',cuisine:'Peri-Peri Chicken',origin:'Portugal / South Africa',codes:['PT','ZA'],lat:51.381291,lng:-0.2833651,rating:5.0,price:'£',dish:'Peri-peri chicken',summary:'Charred chicken, citrus heat, and sauce choices that move from friendly to fiery.',starter:'Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.'},
+    {id:'chicken-king',name:'Chicken King',addr:'54 Tolworth Broadway, KT6 7HR',cuisine:'Fried Chicken',origin:'United States',codes:['US'],lat:51.3811106,lng:-0.283113,rating:4.5,price:'£',dish:'Fried chicken',summary:'A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.',starter:'Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.'},
+    {id:'chicken-cottage-tolworth',name:'Chicken Cottage Tolworth',addr:'54 Tolworth Broadway, KT6 7HR',cuisine:'Fried Chicken',origin:'United Kingdom',codes:['GB'],lat:51.3811355,lng:-0.2831376,rating:4.5,price:'£',dish:'Fried chicken',summary:'A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.',starter:'On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.'},
+    {id:'sunshine-cafe',name:'Sunshine Cafe',addr:'60 Tolworth Broadway, KT6 7HR',cuisine:'Café / British Breakfast',origin:'United Kingdom',codes:['GB'],lat:51.3809753,lng:-0.2829239,rating:4.3,price:'££',dish:'Cafe breakfast',summary:'A neighbourhood cafe for fry-ups, toast, tea, and the steady comfort of a familiar breakfast menu.',starter:'A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.'},
+    {id:'the-dosa-company',name:'The DOSA Company',addr:'90 Tolworth Broadway, KT6 7HT',cuisine:'South Indian Vegetarian',origin:'India (Tamil Nadu)',codes:['IN'],lat:51.3802988,lng:-0.2819784,rating:4.6,price:'££',dish:'Dosa and chutney',summary:'Crisp dosas, comforting curries, and vegetarian plates that make Tolworth feel a little closer to Chennai.',starter:'Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.'},
+    {id:'subway',name:'Subway',addr:'98 Tolworth Broadway, KT6 7HT',cuisine:'Sandwiches',origin:'United States',codes:['US'],lat:51.3801184,lng:-0.2817263,rating:3.7,price:'££',dish:'Fresh sandwich',summary:'Custom sandwiches and quick lunches for people moving through Tolworth Broadway.',starter:'Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.'},
+    {id:'particella-107',name:'Particella 107',addr:'114 Tolworth Broadway, KT6 7HT',cuisine:'Italian Café / Deli',origin:'Italy',codes:['IT'],lat:51.3797576,lng:-0.281222,rating:3.6,price:'£',dish:'Italian deli',summary:'Coffee, deli bites, and Italian-leaning plates for a slower pause on the high street.',starter:'On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.'},
+    {id:'burger-plus',name:'Burger Plus',addr:'116 Tolworth Broadway, KT6 7HT',cuisine:'Burgers / Pizza',origin:'United States / Italy',codes:['US','IT'],lat:51.3797125,lng:-0.281159,rating:3.8,price:'£',dish:'Burger and pizza',summary:'An easy crowd-pleaser with burgers, pizza, and takeaway staples under one roof.',starter:'A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.'},
+    {id:'alb-lounge',name:'Alb Lounge',addr:'120 Tolworth Broadway, KT6 7HT',cuisine:'Mediterranean',origin:'Balkans / Mediterranean',codes:['AL','GR','TR'],lat:51.3796223,lng:-0.2810329,rating:4.9,price:'££',dish:'Mediterranean plate',summary:'Broad Mediterranean flavours with Balkan warmth, grilled plates, salads, and shareable food.',starter:'Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.'},
+    {id:'el-curry-loco',name:'El Curry Loco',addr:'132 Tolworth Broadway, KT6 7HT',cuisine:'Tamil-Mexican Fusion',origin:'India + Mexico',codes:['IN','MX'],lat:51.3793517,lng:-0.2806547,rating:4.7,price:'£',dish:'Fusion tacos',summary:'A playful fusion idea pairing Tamil spice instincts with Mexican street-food formats.',starter:'Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.'},
+    {id:'hillbilly-dogs-tolworth',name:'Hillbilly Dogs Tolworth',addr:'132 Tolworth Broadway, KT6 7HT',cuisine:'Hot Dogs',origin:'United States',codes:['US'],lat:51.3793766,lng:-0.2806793,rating:3.8,price:'£',dish:'Loaded hot dog',summary:'American-style hot dogs, loaded toppings, and a compact menu built for indulgence.',starter:'On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.'},
+    {id:'cake-box-tolworth',name:'Cake Box Tolworth',addr:'23 Tolworth Broadway, KT6 7DJ',cuisine:'Bakery / Cakes',origin:'United Kingdom',codes:['GB'],lat:51.3818096,lng:-0.28409,rating:4.2,price:'£',dish:'Cake display',summary:'Celebration cakes, sweet slices, and boxed desserts for birthdays, treats, and tea breaks.',starter:'A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.'},
+    {id:'moda-caffe',name:'Moda Caffe',addr:'114 Tolworth Broadway, KT6 7HT',cuisine:'Café',origin:'Italy / United Kingdom',codes:['IT','GB'],lat:51.3797825,lng:-0.2812466,rating:4.1,price:'£',dish:'Coffee and pastry',summary:'Coffee, light bites, and cafe basics with an Italian-British influence.',starter:'Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.'},
+  ];
+
+  STORE = 'tolworth_reviews_v2';
+
+  state = {
+    q:'', cuisine:'all', sort:'name', blogSort:'newest',
+    selectedId:null, hoverId:null,
+    modal:null, activeId:null,
+    reviews:[],
+    form:{ restaurantId:'', name:'', date:'', rating:4, dish:'', text:'', photo:null },
+    toast:null,
+  };
+
+  componentDidMount() {
+    try { const raw = localStorage.getItem(this.STORE); if (raw) this.setState({ reviews: JSON.parse(raw) }); } catch (e) {}
+    this.initHero();
+  }
+  componentWillUnmount() { if (this._raf) cancelAnimationFrame(this._raf); if (this._ro) this._ro.disconnect(); }
+
+  persist(reviews) { try { localStorage.setItem(this.STORE, JSON.stringify(reviews)); } catch (e) {} }
+
+  byId(id) { return this.DATA.find(r => r.id === id); }
+  reviewsFor(id) { return this.state.reviews.filter(v => v.restaurantId === id).sort((a, b) => b.createdAt - a.createdAt); }
+  countryCounts() { const m = {}; this.DATA.forEach(r => r.codes.forEach(c => { m[c] = (m[c] || 0) + 1; })); return m; }
+  cuisines() { return [...new Set(this.DATA.map(r => r.cuisine))].sort(); }
+  fmt(d) { if (!d) return ''; const dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }); }
+
+  matches(r) {
+    const q = this.state.q.trim().toLowerCase();
+    if (this.state.cuisine !== 'all' && r.cuisine !== this.state.cuisine) return false;
+    if (!q) return true;
+    return (r.name + ' ' + r.cuisine + ' ' + r.origin + ' ' + r.addr + ' ' + r.dish).toLowerCase().includes(q);
+  }
+  filteredList() {
+    let a = this.DATA.filter(r => this.matches(r));
+    a = a.slice().sort((x, y) => x.name.localeCompare(y.name));
+    return a;
+  }
+
+  positions() {
+    if (this._pos) return this._pos;
+    const rs = [...this.DATA].sort((a, b) => a.lng - b.lng);
+    const lngs = rs.map(r => r.lng); const mn = Math.min(...lngs), mx = Math.max(...lngs); const sp = (mx - mn) || 1;
+    const buckets = {}; const pos = {};
+    rs.forEach(r => {
+      const t = (r.lng - mn) / sp;
+      const key = Math.round(t * 22);
+      const dup = buckets[key] || 0; buckets[key] = dup + 1;
+      const left = 7 + t * 86;
+      const off = dup === 0 ? 0 : Math.ceil(dup / 2) * 46 * (dup % 2 ? -1 : 1);
+      let top = 220 + Math.sin(t * Math.PI * 2.3) * 60 + off;
+      top = Math.max(48, Math.min(392, top));
+      pos[r.id] = { t, left, top };
+    });
+    this._order = rs.map(r => r.id);
+    this._pos = pos; return pos;
+  }
+  streetPoints() {
+    const pos = this.positions();
+    return this._order.map(id => { const p = pos[id]; return (p.left / 100 * 1000).toFixed(1) + ',' + p.top.toFixed(1); }).join(' ');
+  }
+  mapView() {
+    const pos = this.positions();
+    const fids = new Set(this.filteredList().map(r => r.id));
+    return this._order.map(id => {
+      const r = this.byId(id); const p = pos[id];
+      const sel = this.state.selectedId === id; const hov = this.state.hoverId === id; const inF = fids.has(id);
+      const size = Math.round(9 + (r.rating - 3.5) * 6);
+      return {
+        id, name: r.name, left: p.left.toFixed(2), topPx: Math.round(p.top), sizePx: size,
+        transform: (sel || hov) ? 'translate(-50%,-50%) scale(1.4)' : 'translate(-50%,-50%)',
+        bg: sel ? '#ffb829' : (inF ? '#8052ff' : '#333333'),
+        border: sel ? '1.5px solid #ffd27a' : 'none',
+        glow: inF ? (sel ? '0 0 16px rgba(255,184,41,0.7)' : '0 0 12px rgba(128,82,255,0.55)') : 'none',
+        op: inF ? 1 : 0.32, z: (sel || hov) ? 20 : 5, labelOpacity: (sel || hov) ? 1 : 0,
+        onClick: () => this.openDetail(id),
+        onEnter: () => this.setState({ hoverId: id }),
+        onLeave: () => this.setState({ hoverId: null }),
+      };
+    });
+  }
+
+  worldData() {
+    const counts = this.countryCounts();
+    const arr = Object.keys(counts).map(code => ({ code, name: this.CC[code].name, lat: this.CC[code].lat, lng: this.CC[code].lng, count: counts[code] }));
+    const lats = arr.map(a => a.lat), lngs = arr.map(a => a.lng);
+    const laMin = Math.min(...lats), laMax = Math.max(...lats), lnMin = Math.min(...lngs), lnMax = Math.max(...lngs);
+    const px = 11, py = 17;
+    arr.forEach(a => {
+      a.left = +(px + (a.lng - lnMin) / ((lnMax - lnMin) || 1) * (100 - 2 * px)).toFixed(2);
+      a.top = +(py + (laMax - a.lat) / ((laMax - laMin) || 1) * (100 - 2 * py)).toFixed(2);
+      a.sizePx = Math.round(11 + a.count * 3.4);
+    });
+    // vertical de-cluster so close nodes don't collide labels
+    const placed = [];
+    [...arr].sort((a, b) => a.left - b.left).forEach(a => {
+      let tries = 0;
+      while (placed.some(p => Math.abs(p.left - a.left) < 11 && Math.abs(p.top - a.top) < 12) && tries < 24) { a.top += 7; tries++; }
+      a.top = Math.min(88, +a.top.toFixed(2));
+      placed.push(a);
+    });
+    const hub = arr.find(a => a.code === 'GB');
+    return { arr, hub };
+  }
+
+  blogItems() {
+    const items = this.DATA.map(r => {
+      const ur = this.reviewsFor(r.id); const latest = ur[0];
+      const rating = latest ? latest.rating : r.rating;
+      const isUser = !!latest;
+      const meta = latest ? (latest.dish ? latest.dish + ' · ' + (this.fmt(latest.date) || 'recent') : (this.fmt(latest.date) || 'recent')) : (ur.length + ' notes · ' + r.dish);
+      return {
+        id: r.id, name: r.name, cuisine: r.cuisine,
+        rating, ratingStr: '★ ' + rating.toFixed(1),
+        text: latest ? latest.text : r.starter,
+        byline: isUser ? latest.name : 'Local Guide',
+        authorColor: isUser ? '#8052ff' : '#9a9a9a',
+        meta: latest ? (this.fmt(latest.date) || 'Recent') : 'Starter note',
+        photoEl: (latest && latest.photo) ? React.createElement('img', { src: latest.photo, alt: '', style: { width:'100%', height:'170px', objectFit:'cover', display:'block', borderBottom:'1px solid rgba(255,255,255,0.08)' } }) : null,
+        ts: latest ? latest.createdAt : 0,
+        onClick: () => this.openDetail(r.id),
+      };
+    });
+    const s = this.state.blogSort;
+    if (s === 'rating') items.sort((a, b) => b.rating - a.rating || a.name.localeCompare(b.name));
+    else if (s === 'name') items.sort((a, b) => a.name.localeCompare(b.name));
+    else items.sort((a, b) => (b.ts - a.ts) || a.name.localeCompare(b.name));
+    return items;
+  }
+
+  openDetail(id) { this.setState({ modal:'detail', activeId:id, selectedId:id }); }
+  openForm(id) {
+    this.setState(s => ({ modal:'form', activeId: id || s.activeId, form: { ...s.form, restaurantId: id || s.activeId || '', rating:4, date:'', dish:'', text:'', photo:null } }));
+  }
+  closeModal() { this.setState({ modal:null }); }
+  setForm(patch) { this.setState(s => ({ form: { ...s.form, ...patch } })); }
+  onPhoto(e) { const f = e.target.files && e.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => this.setForm({ photo: rd.result }); rd.readAsDataURL(f); }
+  toast(msg) { this.setState({ toast: msg }); clearTimeout(this._tt); this._tt = setTimeout(() => this.setState({ toast: null }), 2600); }
+  submit() {
+    const f = this.state.form;
+    if (!f.restaurantId) { this.toast('Pick a restaurant first'); return; }
+    if (!f.name.trim() || !f.text.trim()) { this.toast('Add your name and a few words'); return; }
+    const rev = { id:'r'+Date.now(), restaurantId:f.restaurantId, name:f.name.trim(), date:f.date, rating:Number(f.rating)||4, dish:f.dish.trim(), text:f.text.trim(), photo:f.photo, createdAt:Date.now() };
+    const reviews = [rev, ...this.state.reviews];
+    this.persist(reviews);
+    this.setState({ reviews, modal:null, selectedId:f.restaurantId });
+    this.toast('Review saved to this browser');
+  }
+
+  initHero() {
+    const cv = document.getElementById('hero-field'); if (!cv || this._heroInit) return; this._heroInit = true;
+    const ctx = cv.getContext('2d');
+    const COLORS = ['#8052ff','#8052ff','#8052ff','#8052ff','#ffb829','#15846e','#ffffff','#ffffff'];
+    const SHAPES = ['circle','circle','circle','diamond','triangle','square'];
+    const st = { w:0, h:0, parts:[], mouse:{x:-9999,y:-9999} };
+    const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+    const seed = () => {
+      const W = st.w, H = st.h; st.parts = [];
+      const N = Math.round(W * H / 1500);
+      const cx = W * 0.62, cy = H * 0.42;
+      for (let i = 0; i < N; i++) {
+        let x, y, inC; const roll = Math.random();
+        if (roll < 0.6) { x = cx + gauss() * W * 0.22; y = cy + gauss() * H * 0.30; inC = true; }
+        else { x = Math.random() * W; y = Math.random() * H; inC = false; }
+        const sz = inC ? (1.4 + Math.random() * 3.2) : (1 + Math.random() * 1.6);
+        st.parts.push({ x, y, hx:x, hy:y, vx:(Math.random()-0.5)*0.15, vy:(Math.random()-0.5)*0.15, size:sz,
+          color: inC ? COLORS[(Math.random()*COLORS.length)|0] : (Math.random()<0.5?'#ffffff':'#9a9a9a'),
+          shape: SHAPES[(Math.random()*SHAPES.length)|0],
+          baseA: inC ? (0.5 + Math.random()*0.45) : (0.16 + Math.random()*0.28),
+          tw: Math.random()*Math.PI*2, tws: 0.6 + Math.random()*1.5, rot: Math.random()*Math.PI, rs:(Math.random()-0.5)*0.01 });
+      }
+    };
+    const resize = () => {
+      const r = cv.getBoundingClientRect(); const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      st.w = r.width; st.h = r.height; cv.width = Math.max(1, Math.round(r.width*dpr)); cv.height = Math.max(1, Math.round(r.height*dpr));
+      ctx.setTransform(dpr,0,0,dpr,0,0); seed();
+    };
+    const draw = () => {
+      const { w, h, parts } = st; ctx.clearRect(0,0,w,h);
+      for (let p of parts) {
+        p.x += p.vx; p.y += p.vy; p.hx += p.vx*0.04; p.hy += p.vy*0.04;
+        p.x += (p.hx-p.x)*0.012; p.y += (p.hy-p.y)*0.012;
+        const dx = p.x-st.mouse.x, dy = p.y-st.mouse.y, d2 = dx*dx+dy*dy;
+        if (d2 < 12000) { const d = Math.sqrt(d2)||1; const f = (1-d/110)*2.2; p.x += dx/d*f; p.y += dy/d*f; }
+        if (p.x < -10) p.x = w+10; if (p.x > w+10) p.x = -10; if (p.y < -10) p.y = h+10; if (p.y > h+10) p.y = -10;
+        p.rot += p.rs; p.tw += 0.016*p.tws;
+        ctx.globalAlpha = Math.max(0, p.baseA*(0.6+0.4*Math.sin(p.tw))); ctx.fillStyle = p.color; const s = p.size;
+        if (p.shape === 'circle') { ctx.beginPath(); ctx.arc(p.x,p.y,s*0.6,0,Math.PI*2); ctx.fill(); }
+        else if (p.shape === 'square') { ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillRect(-s*0.5,-s*0.5,s,s); ctx.restore(); }
+        else if (p.shape === 'diamond') { ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot+Math.PI/4); ctx.fillRect(-s*0.5,-s*0.5,s,s); ctx.restore(); }
+        else { ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.beginPath(); ctx.moveTo(0,-s*0.8); ctx.lineTo(s*0.7,s*0.6); ctx.lineTo(-s*0.7,s*0.6); ctx.closePath(); ctx.fill(); ctx.restore(); }
+      }
+      ctx.globalAlpha = 1; this._raf = requestAnimationFrame(draw);
+    };
+    cv.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); st.mouse.x = e.clientX-r.left; st.mouse.y = e.clientY-r.top; });
+    cv.addEventListener('pointerleave', () => { st.mouse.x = -9999; st.mouse.y = -9999; });
+    this._ro = new ResizeObserver(() => resize()); this._ro.observe(cv);
+    resize(); this._raf = requestAnimationFrame(draw);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const filtered = this.filteredList();
+    const reviewsOf = (id) => this.state.reviews.filter(v => v.restaurantId === id).length;
+    const fcards = filtered.map(r => {
+      const rc = reviewsOf(r.id);
+      return { ...r, ratingStr: '★ ' + r.rating.toFixed(1), priceAddr: r.price + ' · ' + r.addr.split(',')[0],
+        reviewLabel: rc === 0 ? 'Starter note' : (rc + ' review' + (rc>1?'s':'')),
+        reviewColor: rc === 0 ? '#6a6a6a' : '#8052ff',
+        onClick: () => this.openDetail(r.id) };
+    });
+
+    const wd = this.worldData();
+    const worldNodes = wd.arr.map(a => ({ ...a, bg: a.code==='GB' ? '#ffb829' : '#8052ff',
+      glow: a.code==='GB' ? '0 0 16px rgba(255,184,41,0.65)' : '0 0 12px rgba(128,82,255,0.5)',
+      border: a.code==='GB' ? '1.5px solid #ffd27a' : 'none',
+      onClick: () => this.setState({ q: a.name, cuisine:'all' }) }));
+    const worldLines = wd.arr.filter(a => a.code !== 'GB').map(a => ({ x1: wd.hub.left, y1: wd.hub.top, x2: a.left, y2: a.top }));
+    const worldLegend = [...wd.arr].sort((a, b) => b.count - a.count);
+
+    // detail
+    const dR = s.activeId ? this.byId(s.activeId) : null;
+    const dRv = dR ? { ...dR, ratingStr: '★ ' + dR.rating.toFixed(1) } : {};
+    const dReviews = dR ? this.reviewsFor(dR.id).map(v => ({ name: v.name, ratingStr: '★ ' + Number(v.rating).toFixed(1),
+      text: v.text,
+      photoEl: v.photo ? React.createElement('img', { src: v.photo, alt: '', style: { width:'100%', height:'160px', objectFit:'cover', borderRadius:'12px', marginTop:'12px', display:'block' } }) : null,
+      meta: (v.dish ? v.dish + ' · ' : '') + (this.fmt(v.date) || this.fmt(new Date(v.createdAt))) })) : [];
+
+    // form
+    const fixed = !!(s.modal === 'form' && s.activeId);
+    const frName = s.form.restaurantId ? (this.byId(s.form.restaurantId) || {}).name : '';
+    const starStates = [1,2,3,4,5].map(n => ({ n, color: s.form.rating >= n ? '#ffb829' : 'rgba(255,255,255,0.22)', onClick: () => this.setForm({ rating: n }) }));
+
+    return {
+      countries: Object.keys(this.countryCounts()).length,
+      savedReviews: s.reviews.length,
+      q: s.q, onSearch: e => this.setState({ q: e.target.value }),
+      cuisine: s.cuisine, onCuisine: e => this.setState({ cuisine: e.target.value }), cuisines: this.cuisines(),
+      onReset: () => this.setState({ q:'', cuisine:'all' }),
+      resultCount: filtered.length, noResults: filtered.length === 0,
+      streetPoints: this.streetPoints(), mapView: this.mapView(),
+      filtered: fcards,
+      worldNodes, worldLines, worldLegend, hubLeft: wd.hub.left, hubTop: wd.hub.top,
+      blog: this.blogItems(), blogSort: s.blogSort, onBlogSort: e => this.setState({ blogSort: e.target.value }),
+      onAddReview: () => this.openForm(null),
+      stop: e => e.stopPropagation(), onCloseModal: () => this.closeModal(),
+      isDetail: s.modal === 'detail' && !!dR, dR: dRv,
+      dReviews, dHasReviews: dReviews.length > 0, dNoReviews: dReviews.length === 0,
+      onWriteReview: () => this.openForm(s.activeId),
+      isForm: s.modal === 'form', form: s.form,
+      showSelect: !fixed, fixedRestaurant: fixed, formRestaurantName: frName,
+      formOptions: this.DATA.map(r => ({ id: r.id, name: r.name })),
+      onSelectRestaurant: e => this.setForm({ restaurantId: e.target.value }),
+      onName: e => this.setForm({ name: e.target.value }),
+      onDate: e => this.setForm({ date: e.target.value }),
+      onDish: e => this.setForm({ dish: e.target.value }),
+      onText: e => this.setForm({ text: e.target.value }),
+      onPhoto: e => this.onPhoto(e), hasFormPhoto: !!s.form.photo,
+      formPhotoEl: s.form.photo ? React.createElement('img', { src: s.form.photo, alt: '', style: { width:'54px', height:'54px', objectFit:'cover', borderRadius:'12px', border:'1px solid rgba(255,255,255,0.15)' } }) : null,
+      starStates,
+      onSubmit: () => this.submit(),
+      hasToast: !!s.toast, toast: s.toast,
+    };
+  }
+}
+</script>
+</body>
+</html>

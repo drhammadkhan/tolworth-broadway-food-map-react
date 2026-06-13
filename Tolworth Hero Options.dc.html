@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #161616; font-family: 'Sora', ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+</style>
+</helmet>
+<div style="min-height:100vh;background:#161616;padding:48px 40px 80px;">
+
+  <div style="max-width:1180px;margin:0 auto 40px;">
+    <div style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;">Tolworth Broadway Food Map</div>
+    <div style="font-family:'Sora';font-weight:200;font-size:40px;letter-spacing:-0.04em;color:#fff;margin-top:8px;line-height:1.05;">Hero &amp; layout options</div>
+    <div style="font-family:'Sora';font-weight:400;font-size:15px;letter-spacing:0.02em;color:#9a9a9a;margin-top:12px;max-width:560px;line-height:1.5;">Three directions in the void aesthetic — pure black canvas, Plum Voltage as the only color, ultra-thin display type, and a live particle constellation. Pick one and I'll build the full interactive map on top of it.</div>
+  </div>
+
+  <!-- ============ OPTION A — SPLIT (DALA CLASSIC) ============ -->
+  <div style="max-width:1180px;margin:0 auto 56px;">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+      <span style="font-family:'Sora';font-weight:600;font-size:13px;letter-spacing:0.04em;color:#fff;">Option A</span>
+      <span style="font-family:'Sora';font-weight:400;font-size:13px;letter-spacing:0.02em;color:#9a9a9a;">Split — text left, constellation right (Dala classic)</span>
+    </div>
+    <div style="position:relative;width:100%;height:680px;background:#000;border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;">
+      <canvas data-field data-mode="blob" data-inset="42,0,0,0" style="position:absolute;top:0;right:0;bottom:0;left:42%;width:58%;height:100%;display:block;"></canvas>
+      <div style="position:absolute;left:0;top:0;width:42%;height:100%;background:linear-gradient(90deg,#000 70%,rgba(0,0,0,0) 100%);"></div>
+      <!-- nav -->
+      <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 40px;z-index:5;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:30px;height:30px;border:1.5px solid #8052ff;border-radius:8px;display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);font-family:'Sora';font-weight:700;font-size:11px;color:#fff;letter-spacing:0.02em;">TB</span></div>
+          <span style="font-family:'Sora';font-weight:600;font-size:15px;letter-spacing:0.01em;color:#fff;">Tolworth Broadway</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:32px;">
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Local map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">World map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Reviews</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:11px 18px;border-radius:24px;cursor:pointer;">Add a review</span>
+        </div>
+      </div>
+      <!-- text block -->
+      <div style="position:absolute;left:40px;top:50%;transform:translateY(-50%);max-width:430px;z-index:5;">
+        <div style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#fff;margin-bottom:22px;">Tolworth Broadway · KT6</div>
+        <div style="font-family:'Sora';font-weight:200;font-size:76px;line-height:0.92;letter-spacing:-0.04em;color:#fff;">Every plate on one&nbsp;street.</div>
+        <div style="font-family:'Sora';font-weight:400;font-size:16px;line-height:1.55;letter-spacing:0.02em;color:#bdbdbd;margin-top:24px;max-width:380px;">Restaurants, origins, reviews and photos from one stretch of Tolworth — mapped marker by marker into a living local food guide.</div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:32px;">
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:14px 22px;border-radius:24px;cursor:pointer;white-space:nowrap;">Explore the map</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.25);padding:13px 22px;border-radius:24px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#fff;">See origins</span>
+        </div>
+      </div>
+      <!-- stats strip -->
+      <div style="position:absolute;left:40px;bottom:34px;display:flex;gap:40px;z-index:5;">
+        <div><div style="font-family:'Sora';font-weight:200;font-size:38px;letter-spacing:-0.03em;color:#fff;line-height:1;">19</div><div style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;margin-top:6px;">Food outlets</div></div>
+        <div><div style="font-family:'Sora';font-weight:200;font-size:38px;letter-spacing:-0.03em;color:#fff;line-height:1;">11</div><div style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;margin-top:6px;">Origin countries</div></div>
+        <div><div style="font-family:'Sora';font-weight:200;font-size:38px;letter-spacing:-0.03em;color:#8052ff;line-height:1;">4.4</div><div style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;margin-top:6px;">Avg rating</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OPTION B — CENTERED ============ -->
+  <div style="max-width:1180px;margin:0 auto 56px;">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+      <span style="font-family:'Sora';font-weight:600;font-size:13px;letter-spacing:0.04em;color:#fff;">Option B</span>
+      <span style="font-family:'Sora';font-weight:400;font-size:13px;letter-spacing:0.02em;color:#9a9a9a;">Centered — headline floats in a full-bleed field, stats anchored below</span>
+    </div>
+    <div style="position:relative;width:100%;height:680px;background:#000;border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;">
+      <canvas data-field data-mode="ring" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 46%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.55) 75%);"></div>
+      <!-- nav -->
+      <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 40px;z-index:5;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:30px;height:30px;border:1.5px solid #8052ff;border-radius:8px;display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);font-family:'Sora';font-weight:700;font-size:11px;color:#fff;letter-spacing:0.02em;">TB</span></div>
+          <span style="font-family:'Sora';font-weight:600;font-size:15px;letter-spacing:0.01em;color:#fff;">Tolworth Broadway</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:32px;">
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Local map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">World map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Reviews</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:11px 18px;border-radius:24px;cursor:pointer;">Add a review</span>
+        </div>
+      </div>
+      <!-- centered content -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:5;padding:0 40px;">
+        <div style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#fff;margin-bottom:26px;">Local food guide · Tolworth, KT6</div>
+        <div style="font-family:'Sora';font-weight:200;font-size:104px;line-height:0.85;letter-spacing:-0.045em;color:#fff;">The Tolworth Broadway<br>Food Map</div>
+        <div style="font-family:'Sora';font-weight:400;font-size:16px;line-height:1.55;letter-spacing:0.02em;color:#bdbdbd;margin-top:30px;max-width:520px;">Pick a marker, filter the list, add a review — and watch a living food guide assemble itself from one stretch of the Broadway.</div>
+        <div style="margin-top:34px;"><span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:14px 24px;border-radius:24px;cursor:pointer;white-space:nowrap;">Explore the map</span></div>
+      </div>
+      <!-- stats row -->
+      <div style="position:absolute;left:0;right:0;bottom:34px;display:flex;justify-content:center;gap:18px;z-index:5;">
+        <div style="border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:12px 24px;display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Sora';font-weight:200;font-size:26px;color:#fff;letter-spacing:-0.03em;">19</span><span style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;">Food outlets</span></div>
+        <div style="border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:12px 24px;display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Sora';font-weight:200;font-size:26px;color:#fff;letter-spacing:-0.03em;">11</span><span style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;">Origin countries</span></div>
+        <div style="border:1px solid rgba(255,255,255,0.14);border-radius:24px;padding:12px 24px;display:flex;align-items:baseline;gap:10px;"><span style="font-family:'Sora';font-weight:200;font-size:26px;color:#8052ff;letter-spacing:-0.03em;">4.4</span><span style="font-family:'Sora';font-weight:400;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#9a9a9a;">Avg rating</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OPTION C — EDITORIAL ASYMMETRIC ============ -->
+  <div style="max-width:1180px;margin:0 auto 24px;">
+    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+      <span style="font-family:'Sora';font-weight:600;font-size:13px;letter-spacing:0.04em;color:#fff;">Option C</span>
+      <span style="font-family:'Sora';font-weight:400;font-size:13px;letter-spacing:0.02em;color:#9a9a9a;">Editorial — oversized headline bottom-left, stats float top-right, cluster off-center</span>
+    </div>
+    <div style="position:relative;width:100%;height:680px;background:#000;border:1px solid rgba(255,255,255,0.10);border-radius:24px;overflow:hidden;">
+      <canvas data-field data-mode="drift" style="position:absolute;inset:0;width:100%;height:100%;display:block;"></canvas>
+      <!-- nav -->
+      <div style="position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 40px;z-index:5;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:30px;height:30px;border:1.5px solid #8052ff;border-radius:8px;display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);font-family:'Sora';font-weight:700;font-size:11px;color:#fff;letter-spacing:0.02em;">TB</span></div>
+          <span style="font-family:'Sora';font-weight:600;font-size:15px;letter-spacing:0.01em;color:#fff;">Tolworth Broadway</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:32px;">
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Local map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">World map</span>
+          <span style="font-family:'Sora';font-weight:400;font-size:14px;letter-spacing:0.02em;color:#9a9a9a;cursor:pointer;" style-hover="color:#fff;">Reviews</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:11px 18px;border-radius:24px;cursor:pointer;">Add a review</span>
+        </div>
+      </div>
+      <!-- stats top-right as hairline column -->
+      <div style="position:absolute;top:108px;right:40px;display:flex;flex-direction:column;gap:0;z-index:5;text-align:right;">
+        <div style="padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.12);"><div style="font-family:'Sora';font-weight:200;font-size:44px;letter-spacing:-0.03em;color:#fff;line-height:1;">19</div><div style="font-family:'Sora';font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Food outlets</div></div>
+        <div style="padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.12);"><div style="font-family:'Sora';font-weight:200;font-size:44px;letter-spacing:-0.03em;color:#fff;line-height:1;">11</div><div style="font-family:'Sora';font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Origin countries</div></div>
+        <div style="padding:16px 0;"><div style="font-family:'Sora';font-weight:200;font-size:44px;letter-spacing:-0.03em;color:#8052ff;line-height:1;">4.4</div><div style="font-family:'Sora';font-weight:400;font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#9a9a9a;margin-top:4px;">Avg rating</div></div>
+      </div>
+      <!-- big headline bottom-left -->
+      <div style="position:absolute;left:40px;bottom:40px;max-width:760px;z-index:5;">
+        <div style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#8052ff;margin-bottom:20px;">19 outlets · one stretch · KT6</div>
+        <div style="font-family:'Sora';font-weight:200;font-size:92px;line-height:0.86;letter-spacing:-0.045em;color:#fff;">Eat your way<br>down the Broadway.</div>
+        <div style="display:flex;align-items:center;gap:14px;margin-top:30px;">
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;background:#8052ff;padding:14px 22px;border-radius:24px;cursor:pointer;white-space:nowrap;">Explore the map</span>
+          <span style="font-family:'Sora';font-weight:600;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,0.25);padding:13px 22px;border-radius:24px;cursor:pointer;white-space:nowrap;" style-hover="border-color:#fff;">Read reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._inited) return;
+    this._inited = true;
+    this._fields = [];
+    const start = () => {
+      const canvases = document.querySelectorAll('canvas[data-field]');
+      canvases.forEach((cv) => this.initField(cv));
+      this._raf = requestAnimationFrame(this._tick);
+    };
+    // wait a frame so layout is settled
+    requestAnimationFrame(() => requestAnimationFrame(start));
+  }
+
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+  }
+
+  initField = (cv) => {
+    const ctx = cv.getContext('2d');
+    const mode = cv.dataset.mode || 'blob';
+    const COLORS = ['#8052ff','#8052ff','#8052ff','#8052ff','#ffb829','#15846e','#ffffff','#ffffff'];
+    const SHAPES = ['circle','circle','circle','diamond','triangle','square'];
+    const state = { cv, ctx, mode, w: 0, h: 0, parts: [], mouse: { x: -9999, y: -9999 }, t: Math.random() * 1000 };
+
+    const resize = () => {
+      const r = cv.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      state.w = r.width; state.h = r.height;
+      cv.width = Math.max(1, Math.round(r.width * dpr));
+      cv.height = Math.max(1, Math.round(r.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      seed();
+    };
+
+    const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+
+    const seed = () => {
+      const W = state.w, H = state.h;
+      state.parts = [];
+      const area = W * H;
+      const N = Math.round(area / 1400);
+      const cx = mode === 'blob' ? W * 0.5 : (mode === 'drift' ? W * 0.6 : W * 0.5);
+      const cy = mode === 'blob' ? H * 0.5 : (mode === 'drift' ? H * 0.4 : H * 0.46);
+      for (let i = 0; i < N; i++) {
+        let x, y, inCluster;
+        const roll = Math.random();
+        if (mode === 'ring') {
+          if (roll < 0.72) {
+            const ang = Math.random() * Math.PI * 2;
+            const rad = (Math.min(W, H) * 0.30) * (1 + gauss() * 0.28);
+            x = cx + Math.cos(ang) * rad * 1.25;
+            y = cy + Math.sin(ang) * rad;
+            inCluster = true;
+          } else { x = Math.random() * W; y = Math.random() * H; inCluster = false; }
+        } else if (mode === 'drift') {
+          if (roll < 0.60) {
+            x = cx + gauss() * W * 0.22;
+            y = cy + gauss() * H * 0.26;
+            inCluster = true;
+          } else { x = Math.random() * W; y = Math.random() * H; inCluster = false; }
+        } else { // blob
+          if (roll < 0.70) {
+            x = cx + gauss() * W * 0.26;
+            y = cy + gauss() * H * 0.30;
+            inCluster = true;
+          } else { x = Math.random() * W; y = Math.random() * H; inCluster = false; }
+        }
+        const sizeBase = inCluster ? (1.4 + Math.random() * 3.4) : (1 + Math.random() * 1.8);
+        state.parts.push({
+          x, y, hx: x, hy: y,
+          vx: (Math.random() - 0.5) * 0.16,
+          vy: (Math.random() - 0.5) * 0.16,
+          size: sizeBase,
+          color: inCluster ? COLORS[(Math.random() * COLORS.length) | 0] : (Math.random() < 0.5 ? '#ffffff' : '#9a9a9a'),
+          shape: SHAPES[(Math.random() * SHAPES.length) | 0],
+          baseA: inCluster ? (0.55 + Math.random() * 0.45) : (0.18 + Math.random() * 0.3),
+          tw: Math.random() * Math.PI * 2,
+          twSpeed: 0.6 + Math.random() * 1.6,
+          rot: Math.random() * Math.PI,
+          rotSpeed: (Math.random() - 0.5) * 0.01,
+        });
+      }
+    };
+
+    state.draw = (dt) => {
+      const { ctx, w, h, parts } = state;
+      ctx.clearRect(0, 0, w, h);
+      state.t += dt;
+      for (let p of parts) {
+        // gentle drift + return toward home
+        p.x += p.vx; p.y += p.vy;
+        p.hx += p.vx * 0.04; p.hy += p.vy * 0.04;
+        p.x += (p.hx - p.x) * 0.012;
+        p.y += (p.hy - p.y) * 0.012;
+        // mouse repel
+        const dx = p.x - state.mouse.x, dy = p.y - state.mouse.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 12000) {
+          const d = Math.sqrt(d2) || 1;
+          const f = (1 - d / 110) * 2.2;
+          p.x += (dx / d) * f; p.y += (dy / d) * f;
+        }
+        // wrap
+        if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
+        if (p.y < -10) p.y = h + 10; if (p.y > h + 10) p.y = -10;
+        p.rot += p.rotSpeed;
+        p.tw += 0.016 * p.twSpeed;
+        const a = Math.max(0, p.baseA * (0.6 + 0.4 * Math.sin(p.tw)));
+        ctx.globalAlpha = a;
+        ctx.fillStyle = p.color;
+        const s = p.size;
+        if (p.shape === 'circle') {
+          ctx.beginPath(); ctx.arc(p.x, p.y, s * 0.6, 0, Math.PI * 2); ctx.fill();
+        } else if (p.shape === 'square') {
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.fillRect(-s * 0.5, -s * 0.5, s, s); ctx.restore();
+        } else if (p.shape === 'diamond') {
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot + Math.PI / 4);
+          ctx.fillRect(-s * 0.5, -s * 0.5, s, s); ctx.restore();
+        } else { // triangle
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.beginPath(); ctx.moveTo(0, -s * 0.8); ctx.lineTo(s * 0.7, s * 0.6); ctx.lineTo(-s * 0.7, s * 0.6); ctx.closePath(); ctx.fill();
+          ctx.restore();
+        }
+      }
+      ctx.globalAlpha = 1;
+    };
+
+    cv.addEventListener('pointermove', (e) => {
+      const r = cv.getBoundingClientRect();
+      state.mouse.x = e.clientX - r.left; state.mouse.y = e.clientY - r.top;
+    });
+    cv.addEventListener('pointerleave', () => { state.mouse.x = -9999; state.mouse.y = -9999; });
+
+    if (!this._ro) this._ro = new ResizeObserver(() => { this._fields.forEach(f => f.resize()); });
+    state.resize = resize;
+    this._ro.observe(cv);
+    resize();
+    this._fields.push(state);
+  };
+
+  _tick = (now) => {
+    if (!this._last) this._last = now;
+    const dt = Math.min(0.05, (now - this._last) / 1000);
+    this._last = now;
+    for (let f of this._fields) f.draw(dt);
+    this._raf = requestAnimationFrame(this._tick);
+  };
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,574 @@
+{
+  "generatedFrom": "Tolworth_Broadway_Food_Outlets.xlsx",
+  "coordinateNotes": "54 and 60 Tolworth Broadway were geocoded with Nominatim. Other pins are estimated by interpolation along Tolworth Broadway and can be manually refined.",
+  "restaurants": [
+    {
+      "id": "vasantha-vilas",
+      "name": "Vasantha Vilas",
+      "address": "7 Tolworth Broadway KT6 7DQ",
+      "postcode": "KT6 7DQ",
+      "cuisineType": "South Indian Vegetarian",
+      "cuisineOrigin": "India (Tamil Nadu)",
+      "originCountries": [
+        {
+          "code": "IN",
+          "name": "India",
+          "lat": 20.5937,
+          "lng": 78.9629
+        }
+      ],
+      "lat": 51.3821704,
+      "lng": -0.2845943,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "vasantha-vilas",
+      "heroImage": "assets/review-images/vasantha-vilas.png",
+      "rating": 4.6,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Crisp dosas, comforting curries, and vegetarian plates that make Tolworth feel a little closer to Chennai.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Dosa and chutney",
+      "visitedDate": null
+    },
+    {
+      "id": "kebab-express-tolworth",
+      "name": "Kebab Express, Tolworth",
+      "address": "5 Tolworth Broadway KT6 7DQ",
+      "postcode": "KT6 7DQ",
+      "cuisineType": "Kebab / Fast Food",
+      "cuisineOrigin": "Turkey",
+      "originCountries": [
+        {
+          "code": "TR",
+          "name": "Turkey",
+          "lat": 38.9637,
+          "lng": 35.2433
+        }
+      ],
+      "lat": 51.3822155,
+      "lng": -0.2846573,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "kebab-express-tolworth",
+      "heroImage": "assets/review-images/kebab-express-tolworth.png",
+      "rating": 4.3,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A fast, late-friendly stop built around grilled meats, warm bread, sauces, and quick takeaway energy.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Kebab wrap",
+      "visitedDate": null
+    },
+    {
+      "id": "superfish",
+      "name": "Superfish",
+      "address": "25 Tolworth Broadway KT6 7DJ",
+      "postcode": "KT6 7DJ",
+      "cuisineType": "Fish & Chips",
+      "cuisineOrigin": "United Kingdom",
+      "originCountries": [
+        {
+          "code": "GB",
+          "name": "United Kingdom",
+          "lat": 55.3781,
+          "lng": -3.436
+        }
+      ],
+      "lat": 51.3817645,
+      "lng": -0.284027,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "superfish",
+      "heroImage": "assets/review-images/superfish.png",
+      "rating": 3.7,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Classic British comfort food with a simple promise: hot chips, crisp batter, and no unnecessary theatre.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Fish and chips",
+      "visitedDate": null
+    },
+    {
+      "id": "chicken-land",
+      "name": "Chicken Land",
+      "address": "19 Tolworth Broadway KT6 7DJ",
+      "postcode": "KT6 7DJ",
+      "cuisineType": "Fried Chicken",
+      "cuisineOrigin": "United States",
+      "originCountries": [
+        {
+          "code": "US",
+          "name": "United States",
+          "lat": 37.0902,
+          "lng": -95.7129
+        }
+      ],
+      "lat": 51.3818998,
+      "lng": -0.2842161,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "chicken-land",
+      "heroImage": "assets/review-images/chicken-land.png",
+      "rating": 4.0,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.",
+      "starterReview": "Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.",
+      "recommendedDish": "Fried chicken",
+      "visitedDate": null
+    },
+    {
+      "id": "taqueria-la-salsa",
+      "name": "Taqueria la salsa",
+      "address": "41B Tolworth Broadway KT6 7DJ",
+      "postcode": "KT6 7DJ",
+      "cuisineType": "Tacos",
+      "cuisineOrigin": "Mexico",
+      "originCountries": [
+        {
+          "code": "MX",
+          "name": "Mexico",
+          "lat": 23.6345,
+          "lng": -102.5528
+        }
+      ],
+      "lat": 51.3814037,
+      "lng": -0.2835227,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "taqueria-la-salsa",
+      "heroImage": "assets/review-images/taqueria-la-salsa.png",
+      "rating": 4.1,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Bright, casual Mexican flavours with salsa, spice, and a street-food feel on the Broadway.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Tacos and salsa",
+      "visitedDate": null
+    },
+    {
+      "id": "rose-restaurant",
+      "name": "Rose Restaurant",
+      "address": "41 Tolworth Broadway KT6 7DJ",
+      "postcode": "KT6 7DJ",
+      "cuisineType": "Persian",
+      "cuisineOrigin": "Iran",
+      "originCountries": [
+        {
+          "code": "IR",
+          "name": "Iran",
+          "lat": 32.4279,
+          "lng": 53.688
+        }
+      ],
+      "lat": 51.3814037,
+      "lng": -0.2835227,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "rose-restaurant",
+      "heroImage": "assets/review-images/rose-restaurant.png",
+      "rating": 4.4,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Fragrant rice, grilled meats, herbs, and generous plates from the Persian kitchen.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Persian grill",
+      "visitedDate": null
+    },
+    {
+      "id": "pepe-s",
+      "name": "Pepe's",
+      "address": "46 Tolworth Broadway KT6 7HR",
+      "postcode": "KT6 7HR",
+      "cuisineType": "Peri-Peri Chicken",
+      "cuisineOrigin": "Portugal / South Africa",
+      "originCountries": [
+        {
+          "code": "PT",
+          "name": "Portugal",
+          "lat": 39.3999,
+          "lng": -8.2245
+        },
+        {
+          "code": "ZA",
+          "name": "South Africa",
+          "lat": -30.5595,
+          "lng": 22.9375
+        }
+      ],
+      "lat": 51.381291,
+      "lng": -0.2833651,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "pepe-s",
+      "heroImage": "assets/review-images/pepe-s.png",
+      "rating": 5.0,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Charred chicken, citrus heat, and sauce choices that move from friendly to fiery.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Peri-peri chicken",
+      "visitedDate": null
+    },
+    {
+      "id": "chicken-king",
+      "name": "Chicken King",
+      "address": "54 Tolworth Broadway KT6 7HR",
+      "postcode": "KT6 7HR",
+      "cuisineType": "Fried Chicken",
+      "cuisineOrigin": "United States",
+      "originCountries": [
+        {
+          "code": "US",
+          "name": "United States",
+          "lat": 37.0902,
+          "lng": -95.7129
+        }
+      ],
+      "lat": 51.3811106,
+      "lng": -0.283113,
+      "coordinateStatus": "geocoded",
+      "slug": "chicken-king",
+      "heroImage": "assets/review-images/chicken-king.png",
+      "rating": 4.5,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.",
+      "starterReview": "Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.",
+      "recommendedDish": "Fried chicken",
+      "visitedDate": null
+    },
+    {
+      "id": "chicken-cottage-tolworth",
+      "name": "Chicken Cottage Tolworth",
+      "address": "54 Tolworth Broadway KT6 7HR",
+      "postcode": "KT6 7HR",
+      "cuisineType": "Fried Chicken",
+      "cuisineOrigin": "United Kingdom",
+      "originCountries": [
+        {
+          "code": "GB",
+          "name": "United Kingdom",
+          "lat": 55.3781,
+          "lng": -3.436
+        }
+      ],
+      "lat": 51.3811355,
+      "lng": -0.2831376,
+      "coordinateStatus": "geocoded",
+      "slug": "chicken-cottage-tolworth",
+      "heroImage": "assets/review-images/chicken-cottage-tolworth.png",
+      "rating": 4.5,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A quick chicken fix with crunchy coating, fries, and the kind of menu built for easy group orders.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Fried chicken",
+      "visitedDate": null
+    },
+    {
+      "id": "sunshine-cafe",
+      "name": "Sunshine Cafe",
+      "address": "60 Tolworth Broadway KT6 7HR",
+      "postcode": "KT6 7HR",
+      "cuisineType": "Caf\u00e9 / British Breakfast",
+      "cuisineOrigin": "United Kingdom",
+      "originCountries": [
+        {
+          "code": "GB",
+          "name": "United Kingdom",
+          "lat": 55.3781,
+          "lng": -3.436
+        }
+      ],
+      "lat": 51.3809753,
+      "lng": -0.2829239,
+      "coordinateStatus": "geocoded",
+      "slug": "sunshine-cafe",
+      "heroImage": "assets/review-images/sunshine-cafe.png",
+      "rating": 4.3,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A neighbourhood cafe for fry-ups, toast, tea, and the steady comfort of a familiar breakfast menu.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Cafe breakfast",
+      "visitedDate": null
+    },
+    {
+      "id": "the-dosa-company",
+      "name": "The DOSA Company",
+      "address": "90 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "South Indian Vegetarian",
+      "cuisineOrigin": "India (Tamil Nadu)",
+      "originCountries": [
+        {
+          "code": "IN",
+          "name": "India",
+          "lat": 20.5937,
+          "lng": 78.9629
+        }
+      ],
+      "lat": 51.3802988,
+      "lng": -0.2819784,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "the-dosa-company",
+      "heroImage": "assets/review-images/the-dosa-company.png",
+      "rating": 4.6,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Crisp dosas, comforting curries, and vegetarian plates that make Tolworth feel a little closer to Chennai.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Dosa and chutney",
+      "visitedDate": null
+    },
+    {
+      "id": "subway",
+      "name": "Subway",
+      "address": "98 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Sandwiches",
+      "cuisineOrigin": "United States",
+      "originCountries": [
+        {
+          "code": "US",
+          "name": "United States",
+          "lat": 37.0902,
+          "lng": -95.7129
+        }
+      ],
+      "lat": 51.3801184,
+      "lng": -0.2817263,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "subway",
+      "heroImage": "assets/review-images/subway.png",
+      "rating": 3.7,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Custom sandwiches and quick lunches for people moving through Tolworth Broadway.",
+      "starterReview": "Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.",
+      "recommendedDish": "Fresh sandwich",
+      "visitedDate": null
+    },
+    {
+      "id": "particella-107",
+      "name": "Particella 107",
+      "address": "114 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Italian Caf\u00e9 / Deli",
+      "cuisineOrigin": "Italy",
+      "originCountries": [
+        {
+          "code": "IT",
+          "name": "Italy",
+          "lat": 41.8719,
+          "lng": 12.5674
+        }
+      ],
+      "lat": 51.3797576,
+      "lng": -0.281222,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "particella-107",
+      "heroImage": "assets/review-images/particella-107.png",
+      "rating": 3.6,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Coffee, deli bites, and Italian-leaning plates for a slower pause on the high street.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Italian deli",
+      "visitedDate": null
+    },
+    {
+      "id": "burger-plus",
+      "name": "Burger Plus",
+      "address": "116 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Burgers / Pizza",
+      "cuisineOrigin": "United States / Italy",
+      "originCountries": [
+        {
+          "code": "US",
+          "name": "United States",
+          "lat": 37.0902,
+          "lng": -95.7129
+        },
+        {
+          "code": "IT",
+          "name": "Italy",
+          "lat": 41.8719,
+          "lng": 12.5674
+        }
+      ],
+      "lat": 51.3797125,
+      "lng": -0.281159,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "burger-plus",
+      "heroImage": "assets/review-images/burger-plus.png",
+      "rating": 3.8,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "An easy crowd-pleaser with burgers, pizza, and takeaway staples under one roof.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Burger and pizza",
+      "visitedDate": null
+    },
+    {
+      "id": "alb-lounge",
+      "name": "Alb Lounge",
+      "address": "120 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Mediterranean",
+      "cuisineOrigin": "Balkans / Mediterranean",
+      "originCountries": [
+        {
+          "code": "AL",
+          "name": "Albania",
+          "lat": 41.1533,
+          "lng": 20.1683
+        },
+        {
+          "code": "GR",
+          "name": "Greece",
+          "lat": 39.0742,
+          "lng": 21.8243
+        },
+        {
+          "code": "TR",
+          "name": "Turkey",
+          "lat": 38.9637,
+          "lng": 35.2433
+        }
+      ],
+      "lat": 51.3796223,
+      "lng": -0.2810329,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "alb-lounge",
+      "heroImage": "assets/review-images/alb-lounge.png",
+      "rating": 4.9,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Broad Mediterranean flavours with Balkan warmth, grilled plates, salads, and shareable food.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Mediterranean plate",
+      "visitedDate": null
+    },
+    {
+      "id": "el-curry-loco",
+      "name": "El Curry Loco",
+      "address": "132 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Tamil-Mexican Fusion",
+      "cuisineOrigin": "India + Mexico",
+      "originCountries": [
+        {
+          "code": "IN",
+          "name": "India",
+          "lat": 20.5937,
+          "lng": 78.9629
+        },
+        {
+          "code": "MX",
+          "name": "Mexico",
+          "lat": 23.6345,
+          "lng": -102.5528
+        }
+      ],
+      "lat": 51.3793517,
+      "lng": -0.2806547,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "el-curry-loco",
+      "heroImage": "assets/review-images/el-curry-loco.png",
+      "rating": 4.7,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "A playful fusion idea pairing Tamil spice instincts with Mexican street-food formats.",
+      "starterReview": "Needs a field visit and photos. The guide is ready to capture what to order and whether it deserves a repeat visit.",
+      "recommendedDish": "Fusion tacos",
+      "visitedDate": null
+    },
+    {
+      "id": "hillbilly-dogs-tolworth",
+      "name": "Hillbilly Dogs Tolworth",
+      "address": "132 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Hot Dogs",
+      "cuisineOrigin": "United States",
+      "originCountries": [
+        {
+          "code": "US",
+          "name": "United States",
+          "lat": 37.0902,
+          "lng": -95.7129
+        }
+      ],
+      "lat": 51.3793766,
+      "lng": -0.2806793,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "hillbilly-dogs-tolworth",
+      "heroImage": "assets/review-images/hillbilly-dogs-tolworth.png",
+      "rating": 3.8,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "American-style hot dogs, loaded toppings, and a compact menu built for indulgence.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Loaded hot dog",
+      "visitedDate": null
+    },
+    {
+      "id": "cake-box-tolworth",
+      "name": "Cake Box Tolworth",
+      "address": "23 Tolworth Broadway KT6 7DJ",
+      "postcode": "KT6 7DJ",
+      "cuisineType": "Bakery / Cakes",
+      "cuisineOrigin": "United Kingdom",
+      "originCountries": [
+        {
+          "code": "GB",
+          "name": "United Kingdom",
+          "lat": 55.3781,
+          "lng": -3.436
+        }
+      ],
+      "lat": 51.3818096,
+      "lng": -0.28409,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "cake-box-tolworth",
+      "heroImage": "assets/review-images/cake-box-tolworth.png",
+      "rating": 4.2,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Celebration cakes, sweet slices, and boxed desserts for birthdays, treats, and tea breaks.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Cake display",
+      "visitedDate": null
+    },
+    {
+      "id": "moda-caffe",
+      "name": "Moda Caffe",
+      "address": "114 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Caf\u00e9",
+      "cuisineOrigin": "Italy / United Kingdom",
+      "originCountries": [
+        {
+          "code": "IT",
+          "name": "Italy",
+          "lat": 41.8719,
+          "lng": 12.5674
+        },
+        {
+          "code": "GB",
+          "name": "United Kingdom",
+          "lat": 55.3781,
+          "lng": -3.436
+        }
+      ],
+      "lat": 51.3797825,
+      "lng": -0.2812466,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "moda-caffe",
+      "heroImage": "assets/review-images/moda-caffe.png",
+      "rating": 4.1,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Coffee, light bites, and cafe basics with an Italian-British influence.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Coffee and pastry",
+      "visitedDate": null
+    }
+  ]
+}
