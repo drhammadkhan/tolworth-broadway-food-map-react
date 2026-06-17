@@ -35,6 +35,8 @@ const CC = {
   IT:{name:'Italy',lat:41.8719,lng:12.5674},
   AL:{name:'Albania',lat:41.1533,lng:20.1683},
   GR:{name:'Greece',lat:39.0742,lng:21.8243},
+  VN:{name:'Vietnam',lat:14.0583,lng:108.2772},
+  TW:{name:'Taiwan',lat:23.6978,lng:120.9605},
 }
 
 const STORE = 'tolworth_reviews_v2'
@@ -161,7 +163,7 @@ function LocalMap({ markers, onOpenDetail, onSetHover }) {
 
 // ── World map (real country outlines, Natural Earth projection) ───────────────
 // ISO 3166 numeric ids (matching world-atlas) for each origin country.
-const ISO_NUM = { IN:356, TR:792, GB:826, US:840, MX:484, IR:364, PT:620, ZA:710, IT:380, AL:8, GR:300 }
+const ISO_NUM = { IN:356, TR:792, GB:826, US:840, MX:484, IR:364, PT:620, ZA:710, IT:380, AL:8, GR:300, VN:704, TW:158 }
 const ORIGIN_NUMS = new Set(Object.values(ISO_NUM))
 
 const WORLD_W = 1000, WORLD_H = 520
@@ -323,7 +325,7 @@ function Hero({ savedReviews }) {
       <canvas ref={cvRef} style={{position:'absolute',inset:0,width:'100%',height:'100%',display:'block'}} />
       <div style={{position:'relative',zIndex:5,maxWidth:1200,margin:'0 auto',padding:'0 40px',height:'82vh',minHeight:600}}>
         <div style={{position:'absolute',top:60,right:40,textAlign:'right'}}>
-          {[['19','Food outlets','#fff'],[''+countries,'Origin countries','#fff'],[''+savedReviews,'Saved reviews','#8052ff']].map(([val,label,col],i)=>(
+          {[[''+DATA.length,'Food outlets','#fff'],[''+countries,'Origin countries','#fff'],[''+savedReviews,'Saved reviews','#8052ff']].map(([val,label,col],i)=>(
             <div key={i} style={{padding:'16px 0',borderBottom:i<2?'1px solid rgba(255,255,255,0.12)':'none'}}>
               <div style={{fontWeight:200,fontSize:46,letterSpacing:'-0.03em',color:col,lineHeight:1}}>{val}</div>
               <div style={{fontWeight:400,fontSize:11,letterSpacing:'0.07em',textTransform:'uppercase',color:'#9a9a9a',marginTop:4}}>{label}</div>
@@ -331,7 +333,7 @@ function Hero({ savedReviews }) {
           ))}
         </div>
         <div style={{position:'absolute',left:40,bottom:52,maxWidth:780}}>
-          <div style={{fontWeight:600,fontSize:12,letterSpacing:'0.16em',textTransform:'uppercase',color:'#8052ff',marginBottom:20}}>19 outlets · one stretch · KT6</div>
+          <div style={{fontWeight:600,fontSize:12,letterSpacing:'0.16em',textTransform:'uppercase',color:'#8052ff',marginBottom:20}}>{DATA.length} outlets · one stretch · KT6</div>
           <h1 style={{margin:0,fontWeight:200,fontSize:'clamp(48px,8vw,94px)',lineHeight:0.86,letterSpacing:'-0.045em',color:'#fff'}}>Eat your way<br/>down the Broadway.</h1>
           <p style={{fontWeight:400,fontSize:16,lineHeight:1.55,letterSpacing:'0.02em',color:'#bdbdbd',margin:'26px 0 0',maxWidth:440}}>Restaurants, origins, reviews and photos from one stretch of Tolworth — mapped marker by marker into a living local food guide.</p>
           <div style={{display:'flex',alignItems:'center',gap:14,marginTop:30}}>
@@ -412,7 +414,7 @@ function MapSection({ q, cuisine, sort, selectedId, hoverId, reviews, onOpenDeta
         >↺</button>
       </div>
       <div style={{fontWeight:400,fontSize:13,letterSpacing:'0.04em',color:'#6a6a6a',marginTop:16}}>
-        Showing <span style={{color:'#fff'}}>{cards.length}</span> of 19 outlets
+        Showing <span style={{color:'#fff'}}>{cards.length}</span> of {DATA.length} outlets
       </div>
 
       <div style={{position:'relative',width:'100%',height:440,border:'1px solid rgba(255,255,255,0.10)',borderRadius:24,overflow:'hidden',marginTop:24,isolation:'isolate',zIndex:0}}>
