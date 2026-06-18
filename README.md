@@ -1,7 +1,7 @@
 # Handoff: Tolworth Broadway Food Map
 
 ## Overview
-A single-page interactive local food guide for the 19 food outlets on Tolworth Broadway (KT6),
+A single-page interactive local food guide for the 22 food outlets on Tolworth Broadway (KT6),
 rendered in the **"Dala" dark-cosmic design system** (pure-black void, a single violet accent,
 ultra-thin display type, particle constellations). It contains five experiences on one page:
 a particle hero, an abstract local map of the street, a filterable restaurant directory, a
@@ -30,7 +30,7 @@ libraries. The exact hex values, type scale, radii, and copy are authoritative.
 
 ## Data Model
 
-All content is driven by `restaurants.json` (included). 19 records. Each record:
+All content is driven by `restaurants.json` (included). 22 records. Each record:
 
 ```ts
 type Restaurant = {
@@ -50,7 +50,7 @@ type Restaurant = {
 };
 ```
 
-A lookup table maps the 11 country codes to `{ name, lat, lng }` for the world map
+A lookup table maps the 13 country codes to `{ name, lat, lng }` for the world map
 (IN, TR, GB, US, MX, IR, PT, ZA, IT, AL, GR). It lives in the `CC` object in the logic class.
 
 User-submitted reviews are stored separately (see State Management).
@@ -72,11 +72,11 @@ directory) → World map → Reviews → Footer**, plus two modal overlays (deta
 - **Background:** a full-section `<canvas id="hero-field">` running the particle constellation (see Interactions).
 - Inner content `max-width:1200px`, centered, `position:relative; z-index:5`.
 - **Stats column, top-right** (`top:60px; right:40px`, text-right): three stacked figures separated by hairline bottom-borders (`1px solid rgba(255,255,255,0.12)`, `padding:16px 0`). Each: a 200-weight 46px number (`letter-spacing:-0.03em`) over an 11px/400 uppercase label (`#9a9a9a`, `letter-spacing:0.07em`):
-  - `19` — Food outlets
-  - `11` — Origin countries (computed = unique country codes)
+  - `22` — Food outlets (computed = `DATA.length`)
+  - `13` — Origin countries (computed = unique country codes)
   - `{savedReviews}` — Saved reviews (**dynamic**, colored `#8052ff`; starts 0)
 - **Headline block, bottom-left** (`left:40px; bottom:52px; max-width:780px`):
-  - Eyebrow "19 OUTLETS · ONE STRETCH · KT6" — 600/12px, uppercase, `letter-spacing:0.16em`, `#8052ff`, `margin-bottom:20px`.
+  - Eyebrow "22 OUTLETS · ONE STRETCH · KT6" — 600/12px, uppercase, `letter-spacing:0.16em`, `#8052ff`, `margin-bottom:20px` (outlet count is `DATA.length`).
   - `<h1>` "Eat your way<br>down the Broadway." — weight **200**, `font-size:clamp(48px,8vw,94px)`, `line-height:0.86`, `letter-spacing:-0.045em`, `#fff`.
   - Sub-paragraph (`#bdbdbd`, 16px/400, `line-height:1.55`, `max-width:440px`): "Restaurants, origins, reviews and photos from one stretch of Tolworth — mapped marker by marker into a living local food guide."
   - Two pills (`margin-top:30px`, gap 14): filled **EXPLORE THE MAP** → `#map`; outlined **READ REVIEWS** (`1px solid rgba(255,255,255,0.25)`, hover border `#fff`) → `#reviews`.
@@ -88,7 +88,7 @@ directory) → World map → Reviews → Footer**, plus two modal overlays (deta
   - Search input (flex:1, min 240px): `#0b0b0b` bg, `1px solid rgba(255,255,255,0.14)`, radius 24, `padding:14px 18px 14px 40px`, a `⌕` glyph absolutely placed left; focus border `#8052ff`. Filters live.
   - Cuisine `<select>` (min 190px, same chrome): first option "All cuisines", then unique `cuisine` values sorted A–Z.
   - Reset button: 48×48 circle, `↺`, transparent with hairline border; clears search + cuisine.
-  - Below: "Showing **{n}** of 19 outlets".
+  - Below: "Showing **{n}** of 22 outlets".
 - **Map panel:** `height:440px`, radius 24, `1px` hairline border, background `radial-gradient(ellipse 70% 90% at 50% 50%, #0a0a14 0%, #000 70%)`, `overflow:hidden`. Contains:
   - Corner labels: "TOLWORTH BROADWAY · A240" (top-left), "← KT6 7DQ" / "KT6 7HT →" (bottom corners), all small uppercase muted.
   - **Street spine:** an SVG `viewBox="0 0 1000 440" preserveAspectRatio="none"` with one `<polyline>` through all markers in west→east order, `stroke:#8052ff; stroke-width:1.5; stroke-opacity:0.55; vector-effect:non-scaling-stroke`, and the SVG carries `filter:drop-shadow(0 0 7px rgba(128,82,255,0.45))` for the glow.
@@ -180,7 +180,7 @@ Fixed full-screen scrim `rgba(0,0,0,0.7)` + blur; click-outside closes; inner pa
 ## Files
 - `Tolworth Broadway Food Map.dc.html` — the full interactive prototype (hero, map, directory, world map, reviews, modals). Primary reference.
 - `Tolworth Hero Options.dc.html` — three explored hero treatments (A split / B centered / **C editorial — the one shipped**). Useful for alternate hero layouts.
-- `restaurants.json` — the 19-record dataset (source of truth for content + coordinates).
+- `restaurants.json` — the 22-record dataset (source of truth for content + coordinates).
 - `DESIGN.md`, `tokens.json`, `variables.css`, `theme.css` — the full "Dala" design system (CSS custom properties + Tailwind v4 `@theme` are ready to paste).
 
 > Note on the `.dc.html` runtime: ignore the `<x-dc>`, `<sc-for>`, `{{ }}` and `Component extends DCLogic`

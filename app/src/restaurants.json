@@ -569,6 +569,90 @@
       "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
       "recommendedDish": "Coffee and pastry",
       "visitedDate": null
+    },
+    {
+      "id": "dosa-idly-shop",
+      "name": "Dosa Idly Shop",
+      "address": "94 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "South Indian",
+      "cuisineOrigin": "India (Tamil Nadu / Kerala)",
+      "originCountries": [
+        {
+          "code": "IN",
+          "name": "India",
+          "lat": 20.5937,
+          "lng": 78.9629
+        }
+      ],
+      "lat": 51.3802086,
+      "lng": -0.2818524,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "dosa-idly-shop",
+      "heroImage": "assets/review-images/dosa-idly-shop.png",
+      "rating": 4.5,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Crisp dosas, soft idlis, and flaky parottas with both veg combos and Kerala-style non-veg plates.",
+      "starterReview": "Good candidate for a quick lunch review. The first real write-up should cover value, service, and signature order.",
+      "recommendedDish": "Parotta combo",
+      "visitedDate": null
+    },
+    {
+      "id": "ha-noi-pho",
+      "name": "H\u00e0 N\u1ed9i Ph\u1edf",
+      "address": "100 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Vietnamese",
+      "cuisineOrigin": "Vietnam",
+      "originCountries": [
+        {
+          "code": "VN",
+          "name": "Vietnam",
+          "lat": 14.0583,
+          "lng": 108.2772
+        }
+      ],
+      "lat": 51.3800733,
+      "lng": -0.2816633,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "ha-noi-pho",
+      "heroImage": "assets/review-images/ha-noi-pho.png",
+      "rating": 4.5,
+      "price": "\u00a3\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Steaming bowls of ph\u1edf, fresh herbs, and northern Vietnamese cooking brought to the Broadway.",
+      "starterReview": "On the list for a proper visit. The menu looks like exactly the kind of local stop worth documenting with photos.",
+      "recommendedDish": "Ph\u1edf b\u00f2",
+      "visitedDate": null
+    },
+    {
+      "id": "multea-choice",
+      "name": "Multea Choice",
+      "address": "100 Tolworth Broadway KT6 7HT",
+      "postcode": "KT6 7HT",
+      "cuisineType": "Bubble Tea",
+      "cuisineOrigin": "Taiwan",
+      "originCountries": [
+        {
+          "code": "TW",
+          "name": "Taiwan",
+          "lat": 23.6978,
+          "lng": 120.9605
+        }
+      ],
+      "lat": 51.3800883,
+      "lng": -0.2816783,
+      "coordinateStatus": "estimated from Tolworth Broadway anchors",
+      "slug": "multea-choice",
+      "heroImage": "assets/review-images/multea-choice.png",
+      "rating": 4.4,
+      "price": "\u00a3",
+      "reviewStatus": "starter",
+      "summary": "Taiwanese bubble tea, fruit teas, and milk-foam creations for a sweet stop on the high street.",
+      "starterReview": "A starter note for the guide. Add your visit, rating, and best dish to turn this into a real Tolworth review.",
+      "recommendedDish": "Brown sugar bubble tea",
+      "visitedDate": null
     }
   ]
 }
